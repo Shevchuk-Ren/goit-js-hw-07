@@ -5,24 +5,25 @@ input.addEventListener('blur', onInputBlur);
 
 function onInputBlur(event) {
 
-     let currentLengthString = event.currentTarget.value.length;
+    let currentLengthString = event.currentTarget.value.length;
     let maxLengthString = event.currentTarget.dataset.length;
-
+    // console.log(currentLengthString);
     // console.log(event.currentTarget.dataset.length);
-    if (currentLengthString <= maxLengthString) {
+    if (currentLengthString == maxLengthString) {
         input.classList.add('valid');
         input.classList.remove('invalid');
-    console.log(event.currentTarget);
+        console.log(currentLengthString);
+        console.log(event.currentTarget);
  
-    } else if(currentLengthString > maxLengthString) {
+    } else if (currentLengthString > maxLengthString || currentLengthString < maxLengthString) {
         input.classList.add('invalid');
         input.classList.remove('valid');
+        console.log(currentLengthString);
     console.log(event.currentTarget);
 
     };
    
 }
-
 
 
 
