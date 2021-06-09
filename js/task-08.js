@@ -1,35 +1,39 @@
 
-
-const controlsForm = document.getElementById('controls');
-const renderBtn = document.querySelector('[data-action="render"]');
-const destroyBtn = document.querySelector('[data-action="destroy"]');
-const divBoxes = document.getElementById('boxes');
-const input = document.querySelector('input');
-
-
-renderBtn.addEventListener('click', createBoxes);
-destroyBtn.addEventListener('click', destroyBoxes);
-input.addEventListener('input', onInput);
-
-
-function onInput() {
-   
-    let x = input.value;
-    return x;
+const refs = {
+     controlsForm: document.getElementById('controls'),
+    renderBtn: document.querySelector('[data-action="render"]'),
+    destroyBtn: document.querySelector('[data-action="destroy"]'),
+    divBoxes: document.getElementById('boxes'),
+    input: document.querySelector('input'),
 }
 
 
+refs.input.addEventListener('input', onInput);
+refs.renderBtn.addEventListener('click', createBoxes);
+refs.destroyBtn.addEventListener('click', destroyBoxes);
+
+let amount = 0; 
+
+function onInput() {
+   
+    let x = refs.input.value;
+    return x;
+    
+}
+
 
 function createBoxes(amount) {
-    
+   
     let startValue = 30;
-    
-    
-    for(let i = 1; i <= onInput(); i++) {
+     
+    amount = onInput();
+    console.log(amount);
+
+    for(let i = 1; i <= amount; i++) {
         
-        let x = Math.floor(Math.random() * 256);
-        let y = Math.floor(Math.random() * 256);
-        let z = Math.floor(Math.random() * 256);
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
         
         const divAtr = document.createElement('div');
         divAtr.classList = 'div-children';
@@ -37,27 +41,22 @@ function createBoxes(amount) {
         if (i > 1) {
             startValue += 10;
             
-            divAtr.style = `height: ${startValue}px; width: ${startValue}px; background-color: rgb(${x}, ${y}, ${z});`;
+            divAtr.style = `height: ${startValue}px; width: ${startValue}px; background-color: rgb(${r}, ${g}, ${b});`;
             
-            divBoxes.appendChild(divAtr);
+            refs.divBoxes.appendChild(divAtr);
             
         } else {
-            divAtr.style = `height: ${startValue}px; width: ${startValue}px; background-color: rgb(${x}, ${y}, ${z});`;
-            divBoxes.appendChild(divAtr);
-           
+            divAtr.style = `height: ${startValue}px; width: ${startValue}px; background-color: rgb(${r}, ${g}, ${b});`;
+            refs.divBoxes.appendChild(divAtr);
         }
-        
     }
-    
 };
 
-createBoxes(onInput);
 
 function destroyBoxes() {
-    
    
-    divBoxes.innerHTML = '';
-    input.value = '';
+    refs.divBoxes.innerHTML = '';
+    refs.input.value = '';
 
 }
 
